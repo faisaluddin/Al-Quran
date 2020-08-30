@@ -21,12 +21,12 @@ async function getData(surahNumber) {
   surahDD.style.display = "none";
 
   const translatedRes = await fetch(
-    `http://api.alquran.cloud/v1/surah/${surahNumber}/en.sahih`
+    `https://api.alquran.cloud/v1/surah/${surahNumber}/en.sahih`
   );
   translatedJsonRes = await translatedRes.json();
 
   const res = await fetch(
-    `http://api.alquran.cloud/v1/surah/${surahNumber}/quran-uthmani-quran-academy`
+    `https://api.alquran.cloud/v1/surah/${surahNumber}/quran-uthmani-quran-academy`
   );
   jsonRes = await res.json();
 
@@ -41,7 +41,7 @@ async function getData(surahNumber) {
     <p class="translation">${translatedJsonRes.data.ayahs[i].text}</p>
     <audio id="ayah-audio" width="1" controls="" preload="none">
     <source
-      src="http://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/${a.number}/high"
+      src="https://cdn.alquran.cloud/media/audio/ayah/ar.alafasy/${a.number}/high"
       type="audio/mpeg"
     />
   </audio>
@@ -52,7 +52,7 @@ async function getData(surahNumber) {
   });
 
   const audioRes = await fetch(
-    `http://api.alquran.cloud/v1/surah/${surahNumber}/ar.alafasy`
+    `https://api.alquran.cloud/v1/surah/${surahNumber}/ar.alafasy`
   );
 
   jsonAudioRes = await audioRes.json();
@@ -78,7 +78,7 @@ async function getData(surahNumber) {
 }
 
 async function getSurahs() {
-  const res = await fetch("http://api.alquran.cloud/v1/meta");
+  const res = await fetch("https://api.alquran.cloud/v1/meta");
   jsonRes = await res.json();
   const surahs = jsonRes.data.surahs.references;
 
