@@ -69,7 +69,7 @@ async function getData(surahNumber) {
   numberOfAyah.innerText = `Number of Ayahs: ${jsonRes.data.numberOfAyahs}`;
   revelationType.innerText = `Revelation: ${jsonRes.data.revelationType}`;
   currentSurah.innerHTML = `${jsonRes.data.englishName} (${jsonRes.data.englishNameTranslation})
-  <i class="fa fa-caret-down"></i>`;
+  <i>&#9660</i>`;
 
   ayahContainer.innerHTML = templateString;
   ayahDD.innerHTML = ayahOptions;

@@ -102,6 +102,7 @@ body {
   border-bottom: 1px solid gray;
   min-height: 50px;
   padding: 5px;
+  font-size: 15px;
 }
 
 #surah-info {
@@ -124,7 +125,7 @@ body {
 .surah-player span {
   font-weight: bold;
   margin-right: 5px;
-  min-width: 80px;
+  min-width: 100px;
 }
 
 audio {
