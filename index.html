@@ -1,0 +1,54 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Al Quran</title>
+
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="spinner">
+      <div class="rect1"></div>
+      <div class="rect2"></div>
+      <div class="rect3"></div>
+      <div class="rect4"></div>
+      <div class="rect5"></div>
+    </div>
+    <div class="navbar">
+      <nav>
+        <div class="dropdown">
+          <button class="dropbtn" id="current-surah">
+            Dropdown
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content" id="surah-options"></div>
+        </div>
+        <div class="dropdown">
+          <button class="dropbtn" id="goto-ayah">
+            Go to Ayah
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-content" id="ayah-options"></div>
+        </div>
+      </nav>
+    </div>
+    <div class="container">
+      <div class="surah-container">
+        <div class="surah-header">
+          <div id="surah-info">
+            <span id="no-of-ayah"></span>
+            <span id="revelation-type"></span>
+          </div>
+          <div class="surah-player">
+            <span>Play surah:</span>
+            <audio id="surah-audio" width="1" controls="" preload="none">
+              <source src="" type="audio/mpeg" />
+            </audio>
+          </div>
+        </div>
+        <div class="ayah-container"></div>
+      </div>
+    </div>
+  </body>
+  <script src="app.js"></script>
+</html>
