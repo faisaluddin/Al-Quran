@@ -36,11 +36,15 @@ async function getData(surahNumber) {
 
   let templateString = "";
   let ayahOptions = "";
+  const bismillah = "بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِیمِ";
   jsonRes.data.ayahs.forEach((a, i) => {
+    let currentAyah = a.text;
+    if (i === 0 && surahNumber != 1) {
+      currentAyah = currentAyah.replace(bismillah, "");
+    }
     templateString += `
     <div id=ayah${a.numberInSurah} class="ayah-wrapper">
-  
-    <span class="arabic-ayah font-kitab"> ${a.text}</span> 
+    <span class="arabic-ayah font-kitab"> ${currentAyah}</span> 
     <span class="ayah-number"> ${a.numberInSurah}</span> 
     <p class="translation">${translatedJsonRes.data.ayahs[i].text}</p>
     <audio id="ayah-audio" width="1" controls="" preload="none">
