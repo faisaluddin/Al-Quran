@@ -190,6 +190,7 @@ body {
 
 audio {
   height: 40px;
+  outline: none;
 }
 
 .ayah-container {
@@ -277,6 +278,7 @@ audio {
   background-color: #0099cc;
   color: #fff;
   cursor: pointer;
+  outline: none;
 }
 
 button:disabled,
