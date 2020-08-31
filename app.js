@@ -9,6 +9,7 @@ const spinner = document.querySelector(".spinner");
 const goToAyahBtn = document.getElementById("goto-ayah");
 const surahPlayer = document.getElementById("surah-audio");
 const surahPlayerSrc = document.querySelector("#surah-audio source");
+const navigations = document.querySelector(".navbar");
 const ayahAudio = [];
 let index = 1;
 
@@ -61,7 +62,6 @@ async function getData(surahNumber) {
   jsonAudioRes.data.ayahs.forEach(a => {
     ayahAudio.push(a.audio);
   });
-  console.log("audio links ", ayahAudio);
   surahPlayerSrc.src = ayahAudio[0];
   surahPlayer.pause();
   surahPlayer.load();
@@ -75,6 +75,8 @@ async function getData(surahNumber) {
   ayahDD.innerHTML = ayahOptions;
 
   spinner.removeAttribute("style");
+  document.querySelector(".container").style.paddingTop =
+    navigations.offsetHeight + 4 + "px";
 }
 
 async function getSurahs() {
@@ -125,6 +127,11 @@ function playCompleteSurah() {
     index += 1;
   }
 }
+
+window.onresize = () => {
+  document.querySelector(".container").style.paddingTop =
+    navigations.offsetHeight + 4 + "px";
+};
 
 window.onload = () => {
   getSurahs();
