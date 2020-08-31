@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+
+    <!-- Spinner displayed while fetching content -->
     <div class="spinner">
       <div class="rect1"></div>
       <div class="rect2"></div>
@@ -15,6 +17,7 @@
       <div class="rect5"></div>
     </div>
 
+    <!-- Fixed Navbar -->
     <nav class="navbar">
       <div class="dropdown">
         <button class="dropbtn" id="current-surah">Go To Surah</button>
@@ -29,6 +32,7 @@
       </div>
     </nav>
 
+    <!-- All the ayah. children generated via JS -->
     <div class="container">
       <div class="surah-container">
         <div class="surah-header">
@@ -45,6 +49,13 @@
         </div>
         <div class="ayah-container"></div>
       </div>
+    </div>
+
+    <!-- Next and previous button -->
+    <div class="buttons">
+      <button class="button" id="previous">Previous</button>
+      <button class="button" id="next">Next</button>
+      
     </div>
   </body>
   <script src="app.js"></script>

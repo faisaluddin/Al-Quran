@@ -10,8 +10,11 @@ const goToAyahBtn = document.getElementById("goto-ayah");
 const surahPlayer = document.getElementById("surah-audio");
 const surahPlayerSrc = document.querySelector("#surah-audio source");
 const navigations = document.querySelector(".navbar");
+const nextSurahBtn = document.getElementById("next");
+const previousSurahBtn = document.getElementById("previous");
 const ayahAudio = [];
 let index = 1;
+let currentSurahIndex = 1;
 
 async function getData(surahNumber) {
   index = 1;
@@ -70,6 +73,7 @@ async function getData(surahNumber) {
   revelationType.innerText = `Revelation: ${jsonRes.data.revelationType}`;
   currentSurah.innerHTML = `${jsonRes.data.englishName} (${jsonRes.data.englishNameTranslation})
   <i>&#9660</i>`;
+  currentSurahIndex = jsonRes.data.number;
 
   ayahContainer.innerHTML = templateString;
   ayahDD.innerHTML = ayahOptions;
@@ -77,6 +81,17 @@ async function getData(surahNumber) {
   spinner.removeAttribute("style");
   document.querySelector(".container").style.paddingTop =
     navigations.offsetHeight + 4 + "px";
+
+  if (currentSurahIndex == 1) {
+    previousSurahBtn.disabled = true;
+    nextSurahBtn.removeAttribute("disabled");
+  } else if (currentSurahIndex === 114) {
+    nextSurahBtn.disabled = true;
+    previousSurahBtn.removeAttribute("disabled");
+  } else {
+    previousSurahBtn.removeAttribute("disabled");
+    nextSurahBtn.removeAttribute("disabled");
+  }
 }
 
 async function getSurahs() {
@@ -109,14 +124,6 @@ function showSurahDropdown() {
   surahDD.removeAttribute("style");
 }
 
-function loadEventListener() {
-  surahDD.addEventListener("click", getNewSurah);
-  ayahDD.addEventListener("click", goToAyah);
-  goToAyahBtn.addEventListener("mouseover", showAyahDropdown);
-  currentSurah.addEventListener("mouseover", showSurahDropdown);
-  surahPlayer.addEventListener("ended", playCompleteSurah);
-}
-
 function playCompleteSurah() {
   if (index < ayahAudio.length) {
     if (index === 0) index += 1;
@@ -130,6 +137,24 @@ function playCompleteSurah() {
     surahPlayerSrc.src = ayahAudio[index];
     surahPlayer.load();
   }
+}
+
+function nextSurah() {
+  getData(currentSurahIndex + 1);
+}
+
+function previousSurah() {
+  getData(currentSurahIndex - 1);
+}
+
+function loadEventListener() {
+  surahDD.addEventListener("click", getNewSurah);
+  ayahDD.addEventListener("click", goToAyah);
+  goToAyahBtn.addEventListener("mouseover", showAyahDropdown);
+  currentSurah.addEventListener("mouseover", showSurahDropdown);
+  surahPlayer.addEventListener("ended", playCompleteSurah);
+  nextSurahBtn.addEventListener("click", nextSurah);
+  previousSurahBtn.addEventListener("click", previousSurah);
 }
 
 window.onresize = () => {
