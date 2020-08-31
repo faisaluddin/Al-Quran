@@ -178,6 +178,16 @@ audio {
     width: 100%;
   }
 
+  .surah-dd {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 920px) {
+  .surah-header {
+    flex-direction: column;
+  }
+
   #surah-info {
     width: 100%;
     justify-content: start;
@@ -186,14 +196,6 @@ audio {
 
   #revelation-type {
     margin-left: auto;
-  }
-
-  .surah-header {
-    flex-direction: column;
-  }
-
-  .surah-dd {
-    width: 100%;
   }
 }
 
