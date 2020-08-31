@@ -5,6 +5,8 @@
 
 html {
   box-sizing: border-box;
+  scroll-behavior: smooth;
+  scroll-padding-top: 70px; /* height of sticky header */
 }
 *,
 *:before,
@@ -144,6 +146,7 @@ audio {
   border-bottom: 1px solid #6c757d;
   padding: 10px;
   box-shadow: 1px 1px 10px 0px grey;
+  scroll-padding-top: -50px;
 }
 
 .ayah-container .ayah-wrapper:nth-child(odd) {

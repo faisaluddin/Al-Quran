@@ -49,7 +49,7 @@ async function getData(surahNumber) {
     </div>
     `;
 
-    ayahOptions += `<a href=#${a.numberInSurah}> ${a.numberInSurah}</a>`;
+    ayahOptions += `<a href=#ayah${a.numberInSurah}> ${a.numberInSurah}</a>`;
   });
 
   const audioRes = await fetch(
@@ -99,8 +99,6 @@ function getNewSurah(e) {
 
 function goToAyah(e) {
   ayahDD.style.display = "none";
-  location.href =
-    location.href.split("/")[0] + "#ayah" + e.target.href.split("#")[1];
 }
 
 function showAyahDropdown() {
@@ -121,10 +119,16 @@ function loadEventListener() {
 
 function playCompleteSurah() {
   if (index < ayahAudio.length) {
+    if (index === 0) index += 1;
     surahPlayerSrc.src = ayahAudio[index];
+    location.href = location.href.split("/")[0] + "#ayah" + (index + 1);
     surahPlayer.load();
     surahPlayer.play();
     index += 1;
+  } else {
+    index = 0;
+    surahPlayerSrc.src = ayahAudio[index];
+    surahPlayer.load();
   }
 }
 
