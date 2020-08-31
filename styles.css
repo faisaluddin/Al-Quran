@@ -258,8 +258,7 @@ audio {
 
 .buttons {
   display: flex;
-  justify-content: center;
-  column-gap: 20px;
+  justify-content: space-between;
   padding: 10px;
 }
 
