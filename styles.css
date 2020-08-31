@@ -190,12 +190,7 @@ audio {
 
   #surah-info {
     width: 100%;
-    justify-content: start;
     margin-bottom: 5px;
-  }
-
-  #revelation-type {
-    margin-left: auto;
   }
 }
 
