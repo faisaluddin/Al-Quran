@@ -6,7 +6,6 @@
 html {
   box-sizing: border-box;
   scroll-behavior: smooth;
-  scroll-padding-top: 70px; /* height of sticky header */
 }
 *,
 *:before,
@@ -140,10 +139,6 @@ body {
 
 .dropdown:hover .dropdown-content {
   display: block;
-}
-
-.dropdown:hover .dropdown-content:target {
-  display: none;
 }
 
 .container {
@@ -292,4 +287,8 @@ button:hover:enabled {
   border: 1px solid #0099cc;
   background-color: #00aacc;
   color: #ffffff;
+}
+
+.filter {
+  width: 100%;
 }

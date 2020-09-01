@@ -35,7 +35,8 @@ async function getData(surahNumber) {
   jsonRes = await res.json();
 
   let templateString = "";
-  let ayahOptions = "";
+  let ayahOptions =
+    "<input placeholder='filter' id='filter-ayah' class='filter'>";
   const bismillah = "بِسۡمِ ٱللَّهِ ٱلرَّحۡمَـٰنِ ٱلرَّحِیمِ";
   jsonRes.data.ayahs.forEach((a, i) => {
     let currentAyah = a.text;
@@ -81,9 +82,12 @@ async function getData(surahNumber) {
 
   ayahContainer.innerHTML = templateString;
   ayahDD.innerHTML = ayahOptions;
+  document.getElementById("filter-ayah").addEventListener("input", filterAyah);
 
   spinner.removeAttribute("style");
   document.querySelector(".container").style.paddingTop =
+    navigations.offsetHeight + 4 + "px";
+  document.documentElement.style.scrollPaddingTop =
     navigations.offsetHeight + 4 + "px";
 
   if (currentSurahIndex == 1) {
@@ -103,21 +107,29 @@ async function getSurahs() {
   jsonRes = await res.json();
   const surahs = jsonRes.data.surahs.references;
 
-  let templateString = "";
+  let templateString =
+    "<input placeholder='filter' id='filter-surah' class='filter'>";
   surahs.forEach(s => {
-    templateString += `<a href="#${s.number}" > ${s.englishName} (${s.englishNameTranslation})</a>`;
+    templateString += `<a href="#${s.number}" >${s.number}. ${s.englishName} (${s.englishNameTranslation})</a>`;
   });
 
   surahDD.innerHTML = templateString;
+  document
+    .getElementById("filter-surah")
+    .addEventListener("input", filterSurah);
 }
 
 function getNewSurah(e) {
-  e.preventDefault();
-  getData(e.target.href.split("#")[1]);
+  if (!e.target.id) {
+    e.preventDefault();
+    getData(e.target.href.split("#")[1]);
+  }
 }
 
 function goToAyah(e) {
-  ayahDD.style.display = "none";
+  if (!e.target.id) {
+    ayahDD.style.display = "none";
+  }
 }
 
 function showAyahDropdown() {
@@ -151,6 +163,26 @@ function previousSurah() {
   getData(currentSurahIndex - 1);
 }
 
+function filterSurah(e) {
+  const text = e.target.value.toLocaleLowerCase();
+  Array.from(surahDD.children).forEach(c => {
+    c.nodeName === "INPUT" ||
+    c.textContent.toLocaleLowerCase().indexOf(text) != -1
+      ? (c.style.display = "")
+      : (c.style.display = "none");
+  });
+}
+
+function filterAyah(e) {
+  const text = e.target.value.toLocaleLowerCase();
+  Array.from(ayahDD.children).forEach(c => {
+    c.nodeName === "INPUT" ||
+    c.textContent.toLocaleLowerCase().indexOf(text) != -1
+      ? (c.style.display = "")
+      : (c.style.display = "none");
+  });
+}
+
 function loadEventListener() {
   surahDD.addEventListener("click", getNewSurah);
   ayahDD.addEventListener("click", goToAyah);
@@ -164,9 +196,12 @@ function loadEventListener() {
 window.onresize = () => {
   document.querySelector(".container").style.paddingTop =
     navigations.offsetHeight + 4 + "px";
+  document.documentElement.style.scrollPaddingTop =
+    navigations.offsetHeight + 4 + "px";
 };
 
 window.onload = () => {
+  document.documentElement.style.scrollPaddingTop = "50px";
   getSurahs();
   getData(1);
   loadEventListener();
