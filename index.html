@@ -3,8 +3,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Al Quran</title>
-
+     <meta name = "viewport" content = "width =  device-width, initial-scale = 1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="styles.css" />
+    <script>
+</script>
   </head>
   <body>
 
@@ -34,6 +37,24 @@
 
     <!-- All the ayah. children generated via JS -->
     <div class="container">
+    <div class="main">
+    <div class="pop-up"> 
+    <button class="w3-button">&#10005</button>
+    <div class="w3-container" id="heading-modal">
+    <h5>Please register with your whatsapp number to get one ayah daily</h5>
+    
+    <form class="w3-container" id="modal-form">
+    <label>Name :</label>
+    <input class="w3-input w3-border" type="text"/>
+    <label>Phone :</label>
+    <input class="w3-input w3-border" type="number"/>
+    <button class="w3-button w3-border" id="btn">Subscribe</button>
+    </form>
+    <h5 class="w3-text-grey" id="modal-text">If you want to contribute any amount,Please googlePay @6301422946/ @7386077611.</h5>
+    <h5 class="w3-text-grey" id="modal-text"> This amount  will be used for the maintainence of this app. Thank you &#128522 </h5>
+    </div>
+    </div>
+    </div>
       <div class="surah-container">
         <div class="surah-header">
           <div id="surah-info">
@@ -58,5 +79,7 @@
       
     </div>
   </body>
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="app.js"></script>
 </html>

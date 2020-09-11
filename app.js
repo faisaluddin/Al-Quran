@@ -1,5 +1,6 @@
 const ayahContainer = document.querySelector(".ayah-container");
 const surahDD = document.querySelector("#surah-options");
+const closeModal = document.querySelector(".w3-button");
 const ayahDD = document.querySelector("#ayah-options");
 const numberOfAyah = document.getElementById("no-of-ayah");
 const revelationType = document.getElementById("revelation-type");
@@ -139,7 +140,6 @@ function showAyahDropdown() {
 function showSurahDropdown() {
   surahDD.removeAttribute("style");
 }
-
 function playCompleteSurah() {
   if (index < ayahAudio.length) {
     if (index === 0) index += 1;
@@ -191,6 +191,7 @@ function loadEventListener() {
   surahPlayer.addEventListener("ended", playCompleteSurah);
   nextSurahBtn.addEventListener("click", nextSurah);
   previousSurahBtn.addEventListener("click", previousSurah);
+  closeModal.addEventListener("click", hide);
 }
 
 window.onresize = () => {
@@ -200,7 +201,16 @@ window.onresize = () => {
     navigations.offsetHeight + 4 + "px";
 };
 
+var show = function (elem) {
+  elem.classList.add("is-visible");
+};
+
+var hide = function (elem) {
+  document.querySelector(".main").classList.remove("is-visible");
+};
+
 window.onload = () => {
+  show(document.querySelector(".main"));
   document.documentElement.style.scrollPaddingTop = "50px";
   getSurahs();
   getData(1);
