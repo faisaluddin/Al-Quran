@@ -1,6 +1,6 @@
 const ayahContainer = document.querySelector(".ayah-container");
 const surahDD = document.querySelector("#surah-options");
-const closeModal = document.querySelector(".w3-button");
+
 const ayahDD = document.querySelector("#ayah-options");
 const numberOfAyah = document.getElementById("no-of-ayah");
 const revelationType = document.getElementById("revelation-type");
@@ -13,6 +13,8 @@ const surahPlayerSrc = document.querySelector("#surah-audio source");
 const navigations = document.querySelector(".navbar");
 const nextSurahBtn = document.getElementById("next");
 const previousSurahBtn = document.getElementById("previous");
+const modal = document.querySelector(".modal");
+const closeModal = document.querySelector("#close");
 const ayahAudio = [];
 let index = 1;
 let currentSurahIndex = 1;
@@ -183,6 +185,20 @@ function filterAyah(e) {
   });
 }
 
+function show(elem) {
+  elem.classList.add("is-visible");
+  document.body.style.overflow = "hidden";
+}
+
+function hide() {
+  modal.classList.remove("is-visible");
+  document.body.removeAttribute("style");
+}
+
+function closeModalOnEscape(e) {
+  if (e.key === "Escape") hide();
+}
+
 function loadEventListener() {
   surahDD.addEventListener("click", getNewSurah);
   ayahDD.addEventListener("click", goToAyah);
@@ -192,6 +208,7 @@ function loadEventListener() {
   nextSurahBtn.addEventListener("click", nextSurah);
   previousSurahBtn.addEventListener("click", previousSurah);
   closeModal.addEventListener("click", hide);
+  document.addEventListener("keyup", closeModalOnEscape);
 }
 
 window.onresize = () => {
@@ -201,16 +218,8 @@ window.onresize = () => {
     navigations.offsetHeight + 4 + "px";
 };
 
-var show = function (elem) {
-  elem.classList.add("is-visible");
-};
-
-var hide = function (elem) {
-  document.querySelector(".main").classList.remove("is-visible");
-};
-
 window.onload = () => {
-  show(document.querySelector(".main"));
+  show(modal);
   document.documentElement.style.scrollPaddingTop = "50px";
   getSurahs();
   getData(1);

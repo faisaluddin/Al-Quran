@@ -227,34 +227,6 @@ audio {
   font-size: 25px;
 }
 
-@media only screen and (max-width: 420px) {
-  #ayah-audio {
-    width: 100%;
-  }
-
-  .surah-player {
-    width: 100%;
-  }
-
-  .surah-dd {
-    width: 100%;
-  }
-
-  .main.is-visible {
-    width: 100%;
-  }
-}
-
-@media only screen and (max-width: 920px) {
-  .surah-header {
-    flex-direction: column;
-  }
-
-  #surah-info {
-    width: 100%;
-    margin-bottom: 5px;
-  }
-}
 .buttons {
   display: flex;
   justify-content: space-between;
@@ -293,55 +265,100 @@ button:hover:enabled {
   color: #ffffff;
 }
 
-.filter {
+.filter,
+.input {
   width: 100%;
   height: 30px;
 }
-.main {
+.modal {
   min-width: 100%;
   min-height: 100vh;
   position: absolute;
-  top: 0;
-  left: 0;
   display: none;
   z-index: 2;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
-.main.is-visible {
-  min-width: 100%;
-  min-height: 100vh;
-  position: absolute;
-  top: 0;
-  left: 0;
+.modal.is-visible {
   display: block;
-  /* This timing applies on the way IN */
-  transform: translate;
-  z-index: 2;
-  text-align: left;
 }
 
 .pop-up {
-  min-width: 52%;
-  min-height: 52%;
-  box-sizing: border-box;
-  background: whitesmoke;
-  padding: 20px;
+  background: #fff;
   position: absolute;
   top: 20%;
-  left: 15%;
-  right: 15%;
-  transform: translate;
-  border: black;
-  border-style: solid;
-  z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
-  cursor: pointer; /* Add a pointer on hover */
+  left: 30%;
+  right: 30%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 10px;
+  animation-name: modal-animation;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
 }
 
-label {
-  text-align: justify; /* For Edge */
-  text-align-last: right;
+#modal-form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-#btn {
-  margin-top: 3%;
+#close {
+  width: 20px;
+  margin-left: auto;
+  background: #fff;
+  border: none;
+  color: #000;
+}
+
+@media only screen and (max-width: 920px) {
+  .surah-header {
+    flex-direction: column;
+  }
+
+  #surah-info {
+    width: 100%;
+    margin-bottom: 5px;
+  }
+
+  .pop-up {
+    left: 10%;
+    right: 10%;
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  #ayah-audio {
+    width: 100%;
+  }
+
+  .surah-player {
+    width: 100%;
+  }
+
+  .surah-dd {
+    width: 100%;
+  }
+
+  .main.is-visible {
+    width: 100%;
+  }
+
+  .pop-up {
+    left: 5px;
+    right: 5px;
+  }
+}
+
+@keyframes modal-animation {
+  0% {
+    top: -300px;
+  }
+  100% {
+    top: 20%;
+  }
 }
