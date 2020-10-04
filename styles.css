@@ -176,6 +176,7 @@ body {
 .surah-player {
   display: flex;
   align-items: center;
+  position: fixed;
 }
 
 .surah-player span {
@@ -187,6 +188,7 @@ body {
 audio {
   height: 40px;
   outline: none;
+  z-index: inherit;
 }
 
 .ayah-container {
