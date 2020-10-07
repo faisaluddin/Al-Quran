@@ -12,6 +12,7 @@ const surahPlayerSrc = document.querySelector("#surah-audio source");
 const navigations = document.querySelector(".navbar");
 const nextSurahBtn = document.getElementById("next");
 const previousSurahBtn = document.getElementById("previous");
+const scrollButton = document.querySelector("#scrollbtn");
 const ayahAudio = [];
 let index = 1;
 let currentSurahIndex = 1;
@@ -191,6 +192,11 @@ function loadEventListener() {
   surahPlayer.addEventListener("ended", playCompleteSurah);
   nextSurahBtn.addEventListener("click", nextSurah);
   previousSurahBtn.addEventListener("click", previousSurah);
+  scrollButton.addEventListener("click", scrollFunction);
+}
+
+function scrollFunction() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 window.onresize = () => {
